@@ -39,25 +39,26 @@ st.set_page_config(
 st.title("🤖 API Agent Builder")
 st.markdown("Build intelligent Q&A agents from your API specifications")
 
-# Sidebar for API key
-with st.sidebar:
-    st.header("⚙️ Configuration")
+api_key= os.getenv("OPENAI_API_KEY", "")
+# # Sidebar for API key
+# with st.sidebar:
+#     st.header("⚙️ Configuration")
     
-    api_key = st.text_input(
-        "Openai API Key",
-        value=os.getenv("OPENAI_API_KEY", ""),
-        type="password",
-        help="Required for AI features"
-    )
+#     api_key = st.text_input(
+#         "Openai API Key",
+#         value=os.getenv("OPENAI_API_KEY", ""),
+#         type="password",
+#         help="Required for AI features"
+#     )
     
-    if api_key:
-        os.environ["OPENAI_API_KEY"] = api_key
-        app = get_app()
-        if not app.ai_service:
-            app.set_api_key(api_key)
-        st.success("✅ API Key configured")
-    else:
-        st.warning("⚠️ Enter API key for AI features")
+#     if api_key:
+#         os.environ["OPENAI_API_KEY"] = api_key
+#         app = get_app()
+#         if not app.ai_service:
+#             app.set_api_key(api_key)
+#         st.success("✅ API Key configured")
+#     else:
+#         st.warning("⚠️ Enter API key for AI features")
 
 # Initialize session state
 if "current_session_id" not in st.session_state:
